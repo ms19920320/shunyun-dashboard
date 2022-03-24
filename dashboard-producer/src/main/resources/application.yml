@@ -1,5 +1,5 @@
 server:
-  port: 8095
+  port: 8091
   servlet:
     context-path: /dashboard-producer
 
@@ -24,7 +24,3 @@ spring:
 mybatis:
   mapper-locations: classpath:mapper/*Mapper.xml
   type-aliases-package: com.cci.dashboard.product.dao
-
-# 需要从eureka 服务列表中获取到的服务名称配置
-dashboard-producer1-name: dashboard-producer1
-dashboard-gateway-name: dashboard-gateway

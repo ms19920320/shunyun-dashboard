@@ -4,10 +4,8 @@
 
 package com.cci.dashboard.producer.mapper;
 
-import com.cci.dashboard.common.entity.Product;
 import com.cci.dashboard.producer.entity.Industry;
 import com.cci.dashboard.producer.entity.Personnel;
-import net.sf.jsqlparser.statement.create.table.Index;
 
 import java.util.List;
 
@@ -18,10 +16,6 @@ import java.util.List;
  * @since 2022/3/21
  */
 public interface ProductMapper {
-    List<Product> getProducts();
-
-    int updateProductById(Product product);
-
     int addIndustry(Industry industry);
 
     int batchAddIndustry(List<Industry> list);

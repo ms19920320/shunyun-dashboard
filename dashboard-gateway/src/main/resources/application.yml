@@ -1,5 +1,5 @@
 server:
-  port: 8100
+  port: 8081
   servlet:
     context-path: /dashboard-gateway
 eureka:
@@ -42,24 +42,12 @@ spring:
               args:
                 key-resolver: "#{@myLimiter}"  # 自定义类,限流配置，通过ip限流防止同一个ip恶意访问
                 redis-rate-limiter.replenishRate: 1  # 令牌放入桶中速率
-                redis-rate-limiter.burstCapacity: 1  # 桶中最大令牌数
+                redis-rate-limiter.burstCapacity: 10  # 桶中最大令牌数
 
         # 服务配置
         - id: dashboard-producer
           uri: lb://dashboard-producer
           predicates:
             - Path=/dashboard-producer/**
-
-        # 服务1配置
-        - id: dashboard-producer1
-          uri: lb://dashboard-producer1
-          predicates:
-            - Path=/dashboard-producer1/**
-
-        # 服务2配置
-        - id: dashboard-producer2
-          uri: lb://dashboard-producer2
-          predicates:
-            - Path=/dashboard-producer2/**
 
 # spring cloud框架日志输出级别

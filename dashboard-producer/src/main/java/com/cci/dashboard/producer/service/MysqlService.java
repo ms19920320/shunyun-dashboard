@@ -17,9 +17,6 @@ import java.util.List;
  * @since 2022/3/21
  */
 public interface MysqlService {
-    ResValue getProducts();
-
-    ResValue updateProductById(String id, int number);
 
     ResValue addIndustry(Industry industry);
 
