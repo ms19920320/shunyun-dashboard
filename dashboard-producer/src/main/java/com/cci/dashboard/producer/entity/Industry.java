@@ -6,6 +6,7 @@ package com.cci.dashboard.producer.entity;
 
 import com.baomidou.mybatisplus.annotations.TableField;
 import com.baomidou.mybatisplus.annotations.TableName;
+import lombok.Data;
 
 /**
  * 产业链Dao
@@ -13,36 +14,17 @@ import com.baomidou.mybatisplus.annotations.TableName;
  * @author 孟帅
  * @since 2022/3/23
  */
+@Data
 @TableName("industry")
 public class Industry {
-    private String id;
+    // 产业id(主键)
+    @TableField("industry_id")
+    private String industryId;
 
+    // 名称
     private String name;
 
+    // 父级产业id
     @TableField("parent_id")
     private String parentId;
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getParentId() {
-        return parentId;
-    }
-
-    public void setParentId(String parentId) {
-        this.parentId = parentId;
-    }
 }

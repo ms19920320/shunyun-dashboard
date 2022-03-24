@@ -7,7 +7,7 @@ package com.cci.dashboard.producer;
 import com.cci.dashboard.common.entity.ResValue;
 import com.cci.dashboard.producer.entity.Industry;
 import com.cci.dashboard.producer.entity.Personnel;
-import com.cci.dashboard.producer.service.MysqlService;
+import com.cci.dashboard.producer.service.TestService;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -25,8 +25,8 @@ import java.util.UUID;
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class SpringbootTest {
-    @Autowired
-    private MysqlService mysqlService;
+    @Autowired(required = false)
+    private TestService testService;
 
     @org.junit.Test
     public void getUuid() {
@@ -37,7 +37,7 @@ public class SpringbootTest {
 
     @org.junit.Test
     public void batchAddIndustry() {
-        ResValue resValue = mysqlService.getIndustryIdByName("核电");
+        ResValue resValue = testService.getIndustryIdByName("核电");
         String id = resValue.getContent().toString();
         List<String> a1 = Arrays.asList("通水", "通风");
         System.out.println("aabbcc" + a1.size());
@@ -49,14 +49,14 @@ public class SpringbootTest {
             industry.setParentId(id);
             params.add(industry);
         }
-        mysqlService.batchAddIndustry(params);
+        testService.batchAddIndustry(params);
     }
 
     @org.junit.Test
     public void batchAddPersonnel() {
         List<Personnel> list = new ArrayList<>();
         List<String> a = Arrays.asList("吴耀华", "阮耀钟", "夏维东", "冯志华", "尚伟伟", "董小鹏", "孔凡让", "丛爽",
-                "裴刚", "陈则韶","季杰");
+                "裴刚", "陈则韶", "季杰");
         for (int i = 0; i < a.size(); i++) {
             Personnel personnel = new Personnel();
             personnel.setId(UUID.randomUUID().toString());
@@ -64,6 +64,6 @@ public class SpringbootTest {
             personnel.setName(a.get(i));
             list.add(personnel);
         }
-        mysqlService.batchAddPersonnel(list);
+        testService.batchAddPersonnel(list);
     }
 }

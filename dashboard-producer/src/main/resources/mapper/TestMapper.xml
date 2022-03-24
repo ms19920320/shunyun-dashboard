@@ -3,7 +3,7 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <!-- 此处与接口类地址对应 -->
-<mapper namespace="com.cci.dashboard.producer.mapper.ProductMapper">
+<mapper namespace="com.cci.dashboard.producer.mapper.TestMapper">
     <!-- 新增产业 -->
     <insert id="addIndustry" parameterType="com.cci.dashboard.producer.entity.Industry">
         insert into industry(id, name, parent_id) values(#{id}, #{name}, #{parentId})

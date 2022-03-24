@@ -10,12 +10,12 @@ import com.cci.dashboard.producer.entity.Personnel;
 import java.util.List;
 
 /**
- * 产品dao
+ * 单元测试Dao
  *
  * @author 孟帅
  * @since 2022/3/21
  */
-public interface ProductMapper {
+public interface TestMapper {
     int addIndustry(Industry industry);
 
     int batchAddIndustry(List<Industry> list);

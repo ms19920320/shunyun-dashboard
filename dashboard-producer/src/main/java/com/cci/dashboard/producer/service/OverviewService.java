@@ -11,12 +11,12 @@ import com.cci.dashboard.producer.entity.Personnel;
 import java.util.List;
 
 /**
- * 接口服务定义
+ * 产业总览界面service
  *
  * @author 孟帅
  * @since 2022/3/21
  */
-public interface MysqlService {
+public interface OverviewService {
 
     ResValue addIndustry(Industry industry);
 

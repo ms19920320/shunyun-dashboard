@@ -4,7 +4,9 @@
 
 package com.cci.dashboard.producer.entity;
 
+import com.baomidou.mybatisplus.annotations.TableField;
 import com.baomidou.mybatisplus.annotations.TableName;
+import lombok.Data;
 
 /**
  * 人才表DAO
@@ -12,51 +14,22 @@ import com.baomidou.mybatisplus.annotations.TableName;
  * @author 孟帅
  * @since 2022/3/23
  */
+@Data
 @TableName("personnel")
 public class Personnel {
-    private String id;
+    // 主键
+    @TableField("personnel_id")
+    private String personnelId;
+
+    // 姓名
     private String name;
+
+    // 介绍
     private String intro;
+
+    // 从事领域
     private String field;
+
+    // 领域相关
     private String relation;
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getIntro() {
-        return intro;
-    }
-
-    public void setIntro(String intro) {
-        this.intro = intro;
-    }
-
-    public String getField() {
-        return field;
-    }
-
-    public void setField(String field) {
-        this.field = field;
-    }
-
-    public String getRelation() {
-        return relation;
-    }
-
-    public void setRelation(String relation) {
-        this.relation = relation;
-    }
 }
