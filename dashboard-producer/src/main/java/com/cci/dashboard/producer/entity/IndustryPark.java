@@ -14,7 +14,7 @@ import lombok.Data;
  * @since 2022/3/24
  */
 @Data
-@TableName("industrial_park")
+@TableName("industry_park")
 public class IndustryPark {
     // 主键自增长
     private int id;

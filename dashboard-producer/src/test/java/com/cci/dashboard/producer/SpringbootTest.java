@@ -44,7 +44,7 @@ public class SpringbootTest {
         List<Industry> params = new ArrayList<>();
         for (int i = 0; i < a1.size(); i++) {
             Industry industry = new Industry();
-            industry.setId(UUID.randomUUID().toString());
+            industry.setIndustryId(UUID.randomUUID().toString());
             industry.setName(a1.get(i));
             industry.setParentId(id);
             params.add(industry);
@@ -59,7 +59,7 @@ public class SpringbootTest {
                 "裴刚", "陈则韶", "季杰");
         for (int i = 0; i < a.size(); i++) {
             Personnel personnel = new Personnel();
-            personnel.setId(UUID.randomUUID().toString());
+            personnel.setPersonnelId(UUID.randomUUID().toString());
             personnel.setIntro("");
             personnel.setName(a.get(i));
             list.add(personnel);

@@ -9,6 +9,7 @@ import com.cci.dashboard.producer.entity.Industry;
 import com.cci.dashboard.producer.entity.Personnel;
 import com.cci.dashboard.producer.mapper.TestMapper;
 import com.cci.dashboard.producer.service.OverviewService;
+import com.cci.dashboard.producer.service.TestService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,7 +22,7 @@ import java.util.List;
  * @since 2022/3/21
  */
 @Service
-public class TestServiceImp implements OverviewService {
+public class TestServiceImp implements TestService {
     @Autowired(required = false)
     private TestMapper testMapper;
 

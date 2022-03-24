@@ -1,5 +1,9 @@
 package com.cci.dashboard.producer.controller;
 
+import com.cci.dashboard.common.entity.ResValue;
+import com.cci.dashboard.producer.service.OverviewService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -12,5 +16,11 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping(value = "overview")
 public class OverviewController {
+    @Autowired(required = false)
+    private OverviewService overviewService;
 
+    @GetMapping("/getIndustryParks")
+    public ResValue getIndustryParks() {
+        return overviewService.getIndustryParks();
+    }
 }

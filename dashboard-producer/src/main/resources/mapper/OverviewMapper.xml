@@ -4,5 +4,8 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <!-- 此处与接口类地址对应 -->
 <mapper namespace="com.cci.dashboard.producer.mapper.OverviewMapper">
-
+    <!--  获取产业园列表集合 -->
+    <select id="getIndustryParks" parameterType="java.util.List" resultType="com.cci.dashboard.producer.entity.IndustryPark">
+        select * from industry_park
+    </select>
 </mapper>
