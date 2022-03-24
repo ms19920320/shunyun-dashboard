@@ -4,12 +4,6 @@
 
 package com.cci.dashboard.producer.service;
 
-import com.cci.dashboard.common.entity.ResValue;
-import com.cci.dashboard.producer.entity.Industry;
-import com.cci.dashboard.producer.entity.Personnel;
-
-import java.util.List;
-
 /**
  * 产业总览界面service
  *
@@ -18,11 +12,4 @@ import java.util.List;
  */
 public interface OverviewService {
 
-    ResValue addIndustry(Industry industry);
-
-    ResValue batchAddIndustry(List<Industry> list);
-
-    ResValue getIndustryIdByName(String name);
-
-    ResValue batchAddPersonnel(List<Personnel> list);
 }
