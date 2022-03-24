@@ -24,7 +24,7 @@ import java.util.UUID;
  */
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class Test {
+public class SpringbootTest {
     @Autowired
     private MysqlService mysqlService;
 
