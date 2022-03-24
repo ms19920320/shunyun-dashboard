@@ -1,29 +1,13 @@
 server:
-  port: 8081
+  port: 8100
   servlet:
     context-path: /dashboard-gateway
-eureka:
-  instance:
-    preferIpAddress: true
-  client:
-    serviceUrl:
-      defaultZone: http://localhost:8761/eureka  ## 注册到 eureka
 
 spring:
+  profiles:
+    active: prod
   application:
     name: dashboard-gateway
-
-  # redis配置
-  redis:
-    host: 116.62.108.129 # Redis服务器连接端口
-    port: 6379
-    password: 123456   # Redis服务器连接密码（默认为空）
-    pool:
-      max-active: 8   # 连接池最大连接数（使用负值表示没有限制）
-      max-wait: -1  # 连接池最大阻塞等待时间（使用负值表示没有限制）
-      max-idle: 8  # 连接池中的最大空闲连接
-      min-idle: 0  # 连接池中的最小空闲连接
-    timeout: 30000   #连接超时时间（毫秒）
 
   # spring cloud网关配置
   cloud:
@@ -42,12 +26,11 @@ spring:
               args:
                 key-resolver: "#{@myLimiter}"  # 自定义类,限流配置，通过ip限流防止同一个ip恶意访问
                 redis-rate-limiter.replenishRate: 1  # 令牌放入桶中速率
-                redis-rate-limiter.burstCapacity: 10  # 桶中最大令牌数
+                redis-rate-limiter.burstCapacity: 1  # 桶中最大令牌数
 
         # 服务配置
         - id: dashboard-producer
           uri: lb://dashboard-producer
           predicates:
             - Path=/dashboard-producer/**
-
 # spring cloud框架日志输出级别

@@ -19,7 +19,7 @@ public enum ResCode {
     FAILED(1, "fail"),
 
     // 失败，参数无效
-    INVALID_PARAM(1, "Invalid parameter"),
+    INVALID_PARAM(2, "Invalid parameter"),
 
     // 权限认证错误
     UNAUTHORIZED_ERROR(401, "Authority authentication error"),
