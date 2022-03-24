@@ -1,0 +1,91 @@
+server:
+  port: 8090
+  servlet:
+    context-path: /dashboard-gateway
+eureka:
+  instance:
+    preferIpAddress: true
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka  ## 注册到 eureka
+
+spring:
+  application:
+    name: dashboard-gateway
+
+  # redis配置
+  redis:
+    host: 116.62.108.129 # Redis服务器连接端口
+    port: 6379
+    password: 123456   # Redis服务器连接密码（默认为空）
+    pool:
+      max-active: 8   # 连接池最大连接数（使用负值表示没有限制）
+      max-wait: -1  # 连接池最大阻塞等待时间（使用负值表示没有限制）
+      max-idle: 8  # 连接池中的最大空闲连接
+      min-idle: 0  # 连接池中的最小空闲连接
+    timeout: 30000   #连接超时时间（毫秒）
+
+  # spring cloud网关配置
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+      routes:
+        - id: dashboard-producer
+          # 对同一个服务集群会自动进行负载均衡，默认采用轮询，对不同服务进行分流，可采用Weight属性进行权重
+          uri: lb://dashboard-producer
+          order: 1
+          predicates:
+            - Path=/dashboard-producer/test/test1  # Path PathRoutePredicateFactory 截取Route前字段
+            - Query=username  # Query是用来校验请求参数校验，并不要求被请求方法一定要有这个参数
+            - Query=password  # Query QueryRoutePredicateFactory 截取Route前字段
+
+        #        - id: dashboard-producer
+#          order: 2
+#          uri: lb://dashboard-producer # lb代表load balance
+#          predicates:
+#            - Path=/dashboard-producer/** # Path 严格区分大小写
+
+        - id: dashboard-producer
+          uri: lb://dashboard-producer
+          order: 100  # 资料说这个是优先匹配设置，但是感觉并没有什么用，还需要继续研究
+          predicates:
+            - Path=/dashboard-producer/test/test2
+            - Header=token1,1234  # 校验请求头
+            - Method=GET  # 校验请求方式
+            - name: Query  # 校验请求参数
+              args:
+                param: age
+                regexp: \d{1,3} # 支持参数正则表达式匹配
+
+        - id: dashboard-producer1
+          uri: lb://dashboard-producer1
+          predicates:
+            - Path=/dashboard-producer1/**
+
+        - id: dashboard-gateway
+          uri: lb://dashboard-gateway
+          predicates:
+            - Path=/dashboard-gateway/**
+          filters:
+            - name: RequestRateLimiter
+              args:
+                key-resolver: "#{@myLimiter}"  # 自定义类
+                redis-rate-limiter.replenishRate: 1  # 令牌放入桶中速率
+                redis-rate-limiter.burstCapacity: 1  # 桶中最大令牌数
+
+        - id: dashboard-producer1-copy
+          uri: lb://dashboard-producer1-copy
+          predicates:
+            - Path=/dashboard-producer1-copy/**
+#          filters:
+#            - name: Hystrix
+#              args:
+#                name: rongduan
+#                fallbackUri: forward:/fuse  # 服务降级后的回调uri，这个uri是写在网关中的类,新版本已不支持这种写法，还在研究新的服务降级实现方式
+
+# spring cloud框架日志输出级别
+logging:
+  level:
+    org.springframework.cloud.gateway: info

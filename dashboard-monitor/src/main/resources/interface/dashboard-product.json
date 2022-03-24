@@ -1,0 +1,28 @@
+[
+  {
+    "id": "01",
+    "desc": "获取产品列表信息",
+    "name": "getProducts",
+    "url": "dashboard-product/mysql/getProducts",
+    "params": [
+    ]
+  },
+  {
+    "id": "02",
+    "desc": "更新产品数量",
+    "name": "updateProductById",
+    "url": "dashboard-product/mysql/updateProductById",
+    "params": [
+      {
+        "name": "id",
+        "value": "",
+        "type": "java.lang.String"
+      },
+      {
+        "name": "number",
+        "value": "",
+        "type": "java.lang.Integer"
+      }
+    ]
+  }
+]

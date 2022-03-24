@@ -1,0 +1,30 @@
+server:
+  port: 8095
+  servlet:
+    context-path: /dashboard-producer
+
+eureka:
+  instance:
+    preferIpAddress: true
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka  ## 注册到 eureka
+spring:
+  application:
+    name: dashboard-producer
+
+  # mysql数据库连接
+  datasource:
+    username: root
+    password: 123456
+    url: jdbc:mysql://localhost:3306/dashboard?useUnicode=true&characterEncoding=utf-8&useSSL=true&serverTimezone=UTC
+    type: com.alibaba.druid.pool.DruidDataSource
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+mybatis:
+  mapper-locations: classpath:mapper/*Mapper.xml
+  type-aliases-package: com.cci.dashboard.product.dao
+
+# 需要从eureka 服务列表中获取到的服务名称配置
+dashboard-producer1-name: dashboard-producer1
+dashboard-gateway-name: dashboard-gateway

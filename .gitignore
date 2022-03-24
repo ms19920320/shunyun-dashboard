@@ -1,0 +1,13 @@
+/.idea/
+/dashboard-common/target/
+/dashboard-common/dashboard-common.iml
+/dashboard-eureka-server/target/
+/dashboard-eureka-server/dashboard-eureka-server.iml
+/dashboard-gateway/logs/
+/dashboard-gateway/target/
+/dashboard-gateway/dashboard-gateway.iml
+/dashboard-monitor/target/
+/dashboard-monitor/dashboard-monitor.iml
+/dashboard-producer/logs/
+/dashboard-producer/target/
+/dashboard-producer/dashboard-producer.iml
