@@ -23,4 +23,9 @@ public interface OverviewService {
      * @return 产业园列表集合
      */
     ResValue getIndustryParks();
+
+    /**
+     * 获取全国总企业数量及各省企业数量
+     */
+    ResValue companyStatistics();
 }

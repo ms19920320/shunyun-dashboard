@@ -23,4 +23,9 @@ public class OverviewController {
     public ResValue getIndustryParks() {
         return overviewService.getIndustryParks();
     }
+
+    @GetMapping("/companyStatistics")
+    public ResValue companyStatistics() {
+        return overviewService.companyStatistics();
+    }
 }

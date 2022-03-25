@@ -8,4 +8,9 @@
     <select id="getIndustryParks" parameterType="java.util.List" resultType="com.cci.dashboard.producer.entity.IndustryPark">
         select * from industry_park
     </select>
+
+    <!-- 获取企业总数及各省企业总数 -->
+    <select id="companyStatistics" resultType="map">
+        SELECT COUNT(*) AS sub, province FROM company GROUP BY province
+    </select>
 </mapper>

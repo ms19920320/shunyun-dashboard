@@ -7,6 +7,7 @@ package com.cci.dashboard.producer.mapper;
 import com.cci.dashboard.producer.entity.IndustryPark;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * 产业总览界面DAO
@@ -17,4 +18,6 @@ import java.util.List;
 public interface OverviewMapper {
 
     List<IndustryPark> getIndustryParks();
+
+    List<Map<String,Object>> companyStatistics();
 }
