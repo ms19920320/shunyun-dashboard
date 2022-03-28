@@ -4,7 +4,7 @@
 
 package com.cci.dashboard.producer.entity;
 
-import com.baomidou.mybatisplus.annotations.TableName;
+import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
 
 /**

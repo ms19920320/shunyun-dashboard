@@ -25,4 +25,8 @@ public interface TestService {
     ResValue getIndustryIdByName(String name);
 
     ResValue batchAddPersonnel(List<Personnel> list);
+
+    ResValue updateHierarchy(List<Industry> list);
+
+    ResValue getIndustrys(String hierarchy);
 }

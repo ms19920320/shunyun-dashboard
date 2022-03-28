@@ -33,4 +33,11 @@ spring:
           uri: lb://dashboard-producer
           predicates:
             - Path=/dashboard-producer/**
-# spring cloud框架日志输出级别
+mybatis:
+  mapper-locations: classpath:mapper/*Mapper.xml
+  type-aliases-package: com.cci.dashboard.product.dao
+  configuration:
+  　　# 关闭自动驼峰转换
+    map-underscore-to-camel-case: false
+  　　# 打印sql
+  log-impl: org.apache.ibatis.logging.stdout.StdOutImpl

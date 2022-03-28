@@ -7,7 +7,6 @@ package com.cci.dashboard.producer;
 import com.cci.dashboard.common.entity.ResValue;
 import com.cci.dashboard.producer.entity.Industry;
 import com.cci.dashboard.producer.entity.Personnel;
-import com.cci.dashboard.producer.service.OverviewService;
 import com.cci.dashboard.producer.service.TestService;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +19,8 @@ import java.util.List;
 import java.util.UUID;
 
 /**
+ * 自定义单元测试
+ *
  * @author 孟帅
  * @since 2022/3/23
  */
@@ -28,9 +29,6 @@ import java.util.UUID;
 public class SpringbootTest {
     @Autowired(required = false)
     private TestService testService;
-
-    @Autowired(required = false)
-    private OverviewService overviewService;
 
     @org.junit.Test
     public void getUuid() {
@@ -72,7 +70,8 @@ public class SpringbootTest {
     }
 
     @org.junit.Test
-    public void companyStatistics() {
-        overviewService.companyStatistics();
+    public void getIndustrys() {
+        testService.getIndustrys("03");
     }
+
 }

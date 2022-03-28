@@ -23,4 +23,8 @@ public interface TestMapper {
     String getIndustryIdByName(String name);
 
     int batchAddPersonnel(List<Personnel> list);
+
+    int updateHierarchy(List<Industry> industryIds);
+
+    List<Industry> getIndustrys(String hierarchy);
 }

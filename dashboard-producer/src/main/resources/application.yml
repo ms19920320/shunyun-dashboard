@@ -5,10 +5,13 @@ server:
 
 spring:
   profiles:
-    active: prod
+    active: dev
   application:
     name: dashboard-producer
 
 mybatis:
   mapper-locations: classpath:mapper/*Mapper.xml
   type-aliases-package: com.cci.dashboard.product.dao
+  configuration:
+    map-underscore-to-camel-case: false
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl

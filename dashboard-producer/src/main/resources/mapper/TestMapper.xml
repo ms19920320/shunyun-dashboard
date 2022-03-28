@@ -30,4 +30,33 @@
             (#{personnel.id}, #{personnel.name}, #{personnel.intro}, #{personnel.field}, #{personnel.relation})
         </foreach>
     </insert>
+
+    <select id="getIndustrys" parameterType="java.lang.String" resultType="com.cci.dashboard.producer.entity.Industry">
+        select * from industry where hierarchy = #{hierarchy}
+    </select>
+
+    <update id="updateHierarchy" parameterType="java.util.List">
+        update industry
+        <trim prefix="set" suffixOverrides=",">
+            <trim prefix="hierarchy =case" suffix="end,">
+                <foreach collection="list" item="industry">
+                    <if test="industry.hierarchy!=null">
+                        when parent_id=#{industry.parentId} then #{industry.hierarchy}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="position =case" suffix="end,">
+                <foreach collection="list" item="industry">
+                    <if test="industry.position!=null">
+                        when parent_id=#{industry.parentId} then #{industry.position}
+                    </if>
+                </foreach>
+            </trim>
+        </trim>
+        <where>
+            <foreach collection="list" separator="or" item="industry">
+                parent_id = #{industry.parentId}
+            </foreach>
+        </where>
+    </update>
 </mapper>

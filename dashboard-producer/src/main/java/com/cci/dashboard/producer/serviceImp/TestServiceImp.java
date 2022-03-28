@@ -49,4 +49,22 @@ public class TestServiceImp implements TestService {
         testMapper.batchAddPersonnel(list);
         return ResValue.defaultSuccess();
     }
+
+    @Override
+    public ResValue updateHierarchy(List<Industry> list) {
+        int i = testMapper.updateHierarchy(list);
+        return ResValue.defaultSuccess();
+    }
+
+    @Override
+    public ResValue getIndustrys(String hierarchy) {
+        List<Industry> industrys = testMapper.getIndustrys(hierarchy);
+        for (Industry industry : industrys) {
+            industry.setParentId(industry.getIndustryId());
+            industry.setHierarchy("04");
+        }
+        updateHierarchy(industrys);
+        return ResValue.defaultSuccess();
+    }
+
 }
