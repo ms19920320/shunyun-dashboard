@@ -4,6 +4,7 @@
 
 package com.cci.dashboard.producer.mapper;
 
+import com.cci.dashboard.producer.entity.Industry;
 import com.cci.dashboard.producer.entity.IndustryPark;
 
 import java.util.List;
@@ -19,5 +20,11 @@ public interface OverviewMapper {
 
     List<IndustryPark> getIndustryParks();
 
-    List<Map<String,Object>> companyStatistics();
+    List<Map<String, Object>> companyStatistics();
+
+    List<Industry> getIndustryByHierarchy(String hierarchy);
+
+    List<Industry> getIndustryByParentId(String parentId);
+
+    Map<String, Object> industryStatistics(Map<String, Object> params);
 }

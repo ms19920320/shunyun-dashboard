@@ -4,11 +4,12 @@
 
 package com.cci.dashboard.producer.entity;
 
+import com.alibaba.fastjson.annotation.JSONField;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
 
-import java.sql.Timestamp;
+import java.sql.Date;
 
 /**
  * 公司表Dao
@@ -33,7 +34,8 @@ public class Company {
 
     // 注册时间
     @TableField("register_time")
-    private Timestamp registerTime;
+    @JSONField(format="yyyy-MM-dd")
+    private Date registerTime;
 
     // 经营状态
     @TableField("business_status")
@@ -78,11 +80,13 @@ public class Company {
 
     // 核准日期
     @TableField("approval_date")
-    private Timestamp approvalDate;
+    @JSONField(format="yyyy-MM-dd")
+    private Date approvalDate;
 
     // 建立日期
     @TableField("establish_date")
-    private Timestamp establishDate;
+    @JSONField(format="yyyy-MM-dd")
+    private Date establishDate;
 
     // 参保人数
     @TableField("insured_persons")

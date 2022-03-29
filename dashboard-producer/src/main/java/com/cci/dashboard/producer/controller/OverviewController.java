@@ -4,8 +4,12 @@ import com.cci.dashboard.common.entity.ResValue;
 import com.cci.dashboard.producer.service.OverviewService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.Map;
 
 /**
  * 产业总览模块入口
@@ -27,5 +31,10 @@ public class OverviewController {
     @GetMapping("/companyStatistics")
     public ResValue companyStatistics() {
         return overviewService.companyStatistics();
+    }
+
+    @PostMapping("/industryStatistics")
+    public ResValue industryStatistics(@RequestBody Map<String, Object> params) {
+        return overviewService.industryStatistics(params);
     }
 }

@@ -10,6 +10,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * 接口单元测试
  *
@@ -26,5 +29,14 @@ public class ControllerTest {
     @org.junit.Test
     public void companyStatistics() {
         overviewService.companyStatistics();
+    }
+
+    @org.junit.Test
+    public void industryStatistics() {
+        Map<String, Object> map = new HashMap<>();
+        map.put("province", "浙江");
+        map.put("startDate","2015-01-01");
+        map.put("endDate","2011-01-01");
+        overviewService.industryStatistics(map);
     }
 }

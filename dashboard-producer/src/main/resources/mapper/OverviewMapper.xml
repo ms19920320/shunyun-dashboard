@@ -13,4 +13,44 @@
     <select id="companyStatistics" resultType="map">
         SELECT COUNT(*) AS sub, province FROM company GROUP BY province
     </select>
+
+    <!-- 分析统计产业链情况 -->
+    <select id="industryStatistics" parameterType="map" resultType="map">
+        SELECT COUNT(t.company_id) total,t.industry_id,t.name FROM
+        (SELECT t1.industry_id,t1.name,t2.company_id,t2.province FROM industry t1 LEFT JOIN
+        (SELECT t1.company_id,t1.cn_name,t1.establish_date,t1.province,t1.city,t1.area,t2.industry_id FROM company t1,company_tag t2
+        <where>
+            <if test="true">
+                t1.company_id = t2.company_id
+            </if>
+<!--            <if test="startDate!=null and startDate!=''">-->
+<!--                establish_date &gt;= #{startDate}-->
+<!--            </if>-->
+<!--            <if test="endDate!=null and endDate!=''">-->
+<!--                establish_date &lt; #{endDate}-->
+<!--            </if>-->
+            <if test="province!=null and province!=''">
+                and province = #{province}
+            </if>
+            <if test="city!=null and city!=''">
+                and city = #{city}
+            </if>
+            <if test="area!=null and area!=''">
+                and area = #{area}
+            </if>
+        </where>
+        ) t2
+        ON t2.industry_id LIKE CONCAT('%',t1.industry_id,'%') WHERE t1.industry_id = #{industryId}) t GROUP BY t.name;
+
+    </select>
+
+    <!-- 通过层级获取该层级所有产业名称 -->
+    <select id="getIndustryByHierarchy" parameterType="java.lang.String" resultType="com.cci.dashboard.producer.entity.Industry">
+        select * from industry where hierarchy = #{hierarchy}
+    </select>
+
+    <!-- 通过父产业id获取其子产业所有信息 -->
+    <select id="getIndustryByParentId" parameterType="java.lang.String" resultType="com.cci.dashboard.producer.entity.Industry">
+        select * from industry where parent_id = #{parentId}
+    </select>
 </mapper>
